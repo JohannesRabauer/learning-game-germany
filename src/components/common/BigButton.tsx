@@ -34,7 +34,7 @@ export default function BigButton({ children, onClick, color = 'primary', size =
       onClick={onClick}
       disabled={disabled}
       className={`
-        rounded-2xl font-bold shadow-md transition-colors
+        rounded-2xl font-bold shadow-md transition-colors inline-flex items-center justify-center
         ${colorClasses[color]} ${sizeClasses[size]}
         ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
         ${className}

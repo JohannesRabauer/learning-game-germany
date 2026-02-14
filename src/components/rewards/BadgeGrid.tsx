@@ -21,7 +21,7 @@ export default function BadgeGrid({ earnedBadges }: BadgeGridProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.04 }}
-            className={`flex flex-col items-center gap-1.5 p-3 rounded-2xl border transition-all ${
+            className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-2xl border transition-all aspect-square ${
               earned
                 ? 'bg-white shadow-sm border-gray-100'
                 : 'bg-gray-50 border-gray-100 opacity-50'

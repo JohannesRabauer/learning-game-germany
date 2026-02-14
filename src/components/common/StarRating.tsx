@@ -8,7 +8,7 @@ interface StarRatingProps {
 
 export default function StarRating({ stars, size = 40 }: StarRatingProps) {
   return (
-    <div className="flex gap-2 justify-center">
+    <div className="flex gap-2 items-center justify-center">
       {[1, 2, 3].map((i) => (
         <motion.div
           key={i}

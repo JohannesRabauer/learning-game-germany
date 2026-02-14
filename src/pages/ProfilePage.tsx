@@ -34,7 +34,7 @@ export default function ProfilePage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 text-center"
+        className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center"
       >
         <div className="text-6xl mb-3">🦉</div>
         <h1 className="text-2xl font-extrabold text-gray-800">{profile?.name}</h1>

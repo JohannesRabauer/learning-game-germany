@@ -27,10 +27,6 @@
   --color-streak: #f97316;
 }
 
-@utility border-3 {
-  border-width: 3px;
-}
-
 * {
   margin: 0;
   padding: 0;

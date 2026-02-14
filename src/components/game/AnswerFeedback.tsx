@@ -24,8 +24,8 @@ export default function AnswerFeedback({ show, correct, correctAnswer, onDone }:
           onClick={onDone}
         >
           <motion.div
-            className={`bg-white rounded-3xl shadow-2xl p-8 text-center max-w-sm w-full ${
-              correct ? 'border-3 border-correct' : 'border-3 border-wrong'
+            className={`bg-white rounded-2xl shadow-2xl p-8 text-center max-w-sm w-full ${
+              correct ? 'border-2 border-correct' : 'border-2 border-wrong'
             }`}
             initial={correct ? { scale: 0.8 } : { scale: 0.8 }}
             animate={correct ? { scale: 1, rotate: [0, -2, 2, 0] } : { scale: 1, x: [0, -8, 8, -8, 8, 0] }}

@@ -79,7 +79,7 @@ export default function MathFlash({ klasse, difficulty, onComplete }: MathFlashP
 
       <motion.div
         animate={flash === 'correct' ? { backgroundColor: ['#dcfce7', '#ffffff'] } : flash === 'wrong' ? { x: [0, -10, 10, 0] } : {}}
-        className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 text-center mb-6"
+        className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center mb-6"
       >
         <p className="text-4xl font-extrabold text-gray-800">{question.prompt[lang]}</p>
       </motion.div>
@@ -91,7 +91,7 @@ export default function MathFlash({ klasse, difficulty, onComplete }: MathFlashP
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
           placeholder={t('mathFlash.type_answer')}
-          className="flex-1 text-2xl font-bold text-center border-2 border-gray-300 rounded-2xl p-4 focus:border-primary focus:outline-none bg-white"
+          className="flex-1 text-2xl font-bold text-center border-2 border-gray-200 rounded-2xl p-4 focus:border-primary focus:outline-none bg-white"
           autoFocus
         />
         <button

@@ -12,7 +12,7 @@ export default function LanguageSwitch() {
   };
 
   return (
-    <div className="flex rounded-xl overflow-hidden border-2 border-gray-200">
+    <div className="flex rounded-2xl overflow-hidden border-2 border-gray-200">
       <button
         onClick={() => switchLanguage('de')}
         className={`px-3 py-1.5 text-sm font-bold transition-colors cursor-pointer ${

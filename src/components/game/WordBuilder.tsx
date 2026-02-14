@@ -72,7 +72,7 @@ export default function WordBuilder({ question, onAnswer }: WordBuilderProps) {
               whileTap={{ scale: 0.9 }}
               onClick={() => addLetter(idx)}
               disabled={used}
-              className={`w-14 h-14 rounded-xl font-bold text-xl shadow-sm transition-all cursor-pointer ${
+              className={`w-14 h-14 rounded-2xl font-bold text-xl shadow-sm transition-all cursor-pointer flex items-center justify-center ${
                 used
                   ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
                   : 'bg-white text-gray-800 hover:bg-primary/10 hover:border-primary border-2 border-gray-200'
