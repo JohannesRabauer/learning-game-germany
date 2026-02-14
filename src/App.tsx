@@ -11,6 +11,10 @@ import ProfilePage from './pages/ProfilePage';
 import TrophyRoomPage from './pages/TrophyRoomPage';
 import DailyChallengePage from './pages/DailyChallengePage';
 import SettingsPage from './pages/SettingsPage';
+import { loadQuestions } from './content/questions';
+
+// Preload JSON questions as early as possible
+loadQuestions();
 
 function AppRoutes() {
   const { isOnboarded } = useUser();

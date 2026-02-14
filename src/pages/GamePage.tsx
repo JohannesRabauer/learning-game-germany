@@ -16,7 +16,7 @@ import TreasureChestModal from '../components/rewards/TreasureChestModal';
 import Timer from '../components/common/Timer';
 import ProgressBar from '../components/common/ProgressBar';
 import { useTimer } from '../hooks/useTimer';
-import { getQuestions } from '../content/questions';
+import { getQuestionsAsync } from '../content/questions';
 import { calculateRoundXP, calculateStars } from '../utils/scoring';
 import { getChestTier, rollChestReward } from '../content/chests';
 import type { Subject, Question, MultipleChoiceQuestion, WordBuildQuestion, DragSortQuestion } from '../types/question';
@@ -37,10 +37,14 @@ export default function GamePage() {
   const gameMode = mode as GameMode;
   const klasse = profile?.klasse ?? 1;
 
-  const [questions] = useState<Question[]>(() =>
-    getQuestions({ subject: sub, klasse, limit: QUESTIONS_PER_ROUND })
-  );
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIdx, setCurrentIdx] = useState(0);
+
+  useEffect(() => {
+    getQuestionsAsync({ subject: sub, klasse, limit: QUESTIONS_PER_ROUND }).then((qs) => {
+      setQuestions(qs);
+    });
+  }, [sub, klasse]);
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [combo, setCombo] = useState(0);
   const [maxCombo, setMaxCombo] = useState(0);
