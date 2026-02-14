@@ -72,6 +72,8 @@ export default function DailyChallengePage() {
           leveledUp: false,
           previousLevel: progress.level,
           newLevel: progress.level,
+          chestTier: stars === 3 ? 'gold' : stars === 2 ? 'silver' : 'bronze',
+          chestReward: null,
         });
       } else {
         setCurrentIdx((prev) => prev + 1);

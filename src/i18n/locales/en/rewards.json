@@ -28,5 +28,16 @@
     "one": "1 star",
     "two": "2 stars",
     "three": "3 stars"
+  },
+  "chest": {
+    "earned": "Treasure chest earned!",
+    "newTitle": "New Title!",
+    "newCosmetic": "New Skin!",
+    "collect": "Collect!"
+  },
+  "tabs": {
+    "badges": "Badges",
+    "titles": "Titles",
+    "cosmetics": "Skins"
   }
 }

@@ -12,13 +12,16 @@ import AnswerFeedback from '../components/game/AnswerFeedback';
 import RoundSummary from '../components/game/RoundSummary';
 import LevelUpModal from '../components/rewards/LevelUpModal';
 import BadgeUnlock from '../components/rewards/BadgeUnlock';
+import TreasureChestModal from '../components/rewards/TreasureChestModal';
 import Timer from '../components/common/Timer';
 import ProgressBar from '../components/common/ProgressBar';
 import { useTimer } from '../hooks/useTimer';
 import { getQuestions } from '../content/questions';
 import { calculateRoundXP, calculateStars } from '../utils/scoring';
+import { getChestTier, rollChestReward } from '../content/chests';
 import type { Subject, Question, MultipleChoiceQuestion, WordBuildQuestion, DragSortQuestion } from '../types/question';
 import type { GameMode, AnswerRecord, GameResult } from '../types/game';
+import type { ChestReward, ChestTier } from '../types/reward';
 
 const TIMER_MODES = { relaxed: 30, standard: 20, challenge: 10 };
 const QUESTIONS_PER_ROUND = 10;
@@ -27,7 +30,7 @@ export default function GamePage() {
   const { subject, mode } = useParams<{ subject: string; mode: string }>();
   const navigate = useNavigate();
   const { profile, settings } = useUser();
-  const { progress, addXP, recordAnswer, recordPerfectRound, updateCombo, updateStreak, checkNewBadges } = useGame();
+  const { progress, addXP, recordAnswer, recordPerfectRound, updateCombo, updateStreak, checkNewBadges, openChest } = useGame();
   const { playSound } = useSound();
 
   const sub = subject as Subject;
@@ -49,6 +52,9 @@ export default function GamePage() {
   const [newLevel, setNewLevel] = useState(0);
   const [showBadge, setShowBadge] = useState(false);
   const [newBadgeId, setNewBadgeId] = useState('');
+  const [showChest, setShowChest] = useState(false);
+  const [chestTier, setChestTier] = useState<ChestTier>('bronze');
+  const [chestReward, setChestReward] = useState<ChestReward | null>(null);
 
   const questionStartTime = useRef(Date.now());
   const timerPerQuestion = TIMER_MODES[settings.timerMode];
@@ -109,16 +115,31 @@ export default function GamePage() {
     const totalCorrect = finalAnswers.filter((a) => a.correct).length;
     const stars = calculateStars(totalCorrect, finalAnswers.length);
     const previousLevel = progress.level;
+    const isPerfect = totalCorrect === finalAnswers.length && finalAnswers.length > 0;
 
     addXP(xpEarned);
 
-    if (totalCorrect === finalAnswers.length) {
+    if (isPerfect) {
       recordPerfectRound();
       playSound('streak');
     }
 
     const newBadges = checkNewBadges();
     const newLevelAfterXP = progress.level;
+
+    // Roll treasure chest
+    const tier = getChestTier(stars, isPerfect);
+    const reward = rollChestReward(
+      tier,
+      progress.unlockedTitles ?? [],
+      progress.unlockedCosmetics ?? [],
+    );
+
+    // Apply chest XP bonus
+    addXP(reward.xpBonus);
+
+    // Record chest opening and unlocks
+    openChest(reward.title, reward.cosmetic);
 
     const gameResult: GameResult = {
       config,
@@ -133,9 +154,13 @@ export default function GamePage() {
       leveledUp: newLevelAfterXP > previousLevel,
       previousLevel,
       newLevel: newLevelAfterXP,
+      chestTier: tier,
+      chestReward: reward,
     };
 
     setResult(gameResult);
+    setChestTier(tier);
+    setChestReward(reward);
 
     if (newLevelAfterXP > previousLevel) {
       playSound('levelup');
@@ -144,7 +169,28 @@ export default function GamePage() {
     } else if (newBadges.length > 0) {
       setNewBadgeId(newBadges[0]);
       setShowBadge(true);
+    } else {
+      setShowChest(true);
     }
+  };
+
+  const handleLevelUpClose = () => {
+    setShowLevelUp(false);
+    if (result && result.newBadges.length > 0) {
+      setNewBadgeId(result.newBadges[0]);
+      setShowBadge(true);
+    } else {
+      setShowChest(true);
+    }
+  };
+
+  const handleBadgeClose = () => {
+    setShowBadge(false);
+    setShowChest(true);
+  };
+
+  const handleChestClose = () => {
+    setShowChest(false);
   };
 
   const handleMathFlashComplete = (_score: number, correctCount: number, totalCount: number) => {
@@ -165,8 +211,9 @@ export default function GamePage() {
           onPlayAgain={() => navigate(`/game/${sub}/${gameMode}`)}
           onHome={() => navigate('/')}
         />
-        <LevelUpModal isOpen={showLevelUp} onClose={() => setShowLevelUp(false)} newLevel={newLevel} />
-        <BadgeUnlock isOpen={showBadge} onClose={() => setShowBadge(false)} badgeId={newBadgeId} />
+        <LevelUpModal isOpen={showLevelUp} onClose={handleLevelUpClose} newLevel={newLevel} />
+        <BadgeUnlock isOpen={showBadge} onClose={handleBadgeClose} badgeId={newBadgeId} />
+        <TreasureChestModal isOpen={showChest} onClose={handleChestClose} tier={chestTier} reward={chestReward} />
       </>
     );
   }
