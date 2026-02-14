@@ -81,7 +81,7 @@ export default function DailyChallengePage() {
 
   if (alreadyCompleted && !started) {
     return (
-      <div className="py-8 text-center max-w-md mx-auto">
+      <div className="py-6 text-center max-w-md mx-auto">
         <MascotSpeech message={t('daily.completed')} mood="happy" />
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="mt-6">
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 mb-6">
@@ -96,7 +96,7 @@ export default function DailyChallengePage() {
 
   if (!started) {
     return (
-      <div className="py-8 text-center max-w-md mx-auto">
+      <div className="py-6 text-center max-w-md mx-auto">
         <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-7xl mb-6">📅</motion.div>
         <h1 className="text-3xl font-extrabold text-gray-800 mb-3">{t('daily.title')}</h1>
         <p className="text-gray-600 mb-6 font-semibold">{t('daily.streak', { count: progress.streak.current })}</p>

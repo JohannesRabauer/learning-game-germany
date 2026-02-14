@@ -22,7 +22,7 @@ function DraggableItem({ id, label, placed }: { id: string; label: string; place
       style={style}
       {...listeners}
       {...attributes}
-      className={`bg-white border-2 border-gray-200 rounded-xl px-4 py-3 font-bold text-center cursor-grab active:cursor-grabbing shadow-sm transition-colors
+      className={`bg-white border-2 border-gray-200 rounded-2xl px-4 py-3 font-bold text-center cursor-grab active:cursor-grabbing shadow-sm transition-colors
         ${isDragging ? 'opacity-50 z-50 border-primary' : 'hover:border-primary/40'}`}
     >
       {label}
@@ -37,7 +37,7 @@ function DroppableCategory({ id, label, items }: { id: string; label: string; it
     <div
       ref={setNodeRef}
       className={`border-2 border-dashed rounded-2xl p-4 min-h-[120px] transition-all ${
-        isOver ? 'border-primary bg-primary/5 shadow-inner' : 'border-gray-300 bg-gray-50/80'
+        isOver ? 'border-primary bg-primary/5 shadow-inner' : 'border-gray-200 bg-gray-50/80'
       }`}
     >
       <p className="font-bold text-center text-gray-600 mb-2 text-sm">{label}</p>

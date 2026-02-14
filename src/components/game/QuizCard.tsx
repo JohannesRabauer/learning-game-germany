@@ -51,7 +51,7 @@ export default function QuizCard({ question, questionNumber, totalQuestions, onA
       <p className="text-sm font-semibold text-gray-400 mb-2 text-center">
         {t('quiz.question', { current: questionNumber, total: totalQuestions })}
       </p>
-      <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 mb-5">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-5">
         <p className="text-2xl font-bold text-center text-gray-800">
           {question.prompt[lang]}
         </p>
@@ -71,7 +71,7 @@ export default function QuizCard({ question, questionNumber, totalQuestions, onA
             whileTap={answered ? undefined : { scale: 0.96 }}
             onClick={() => handleSelect(option.value)}
             disabled={answered}
-            className={`rounded-2xl font-bold text-lg px-5 py-4 min-h-[56px] shadow-sm transition-all cursor-pointer ${getOptionStyle(option.value)} ${answered ? 'cursor-default' : ''}`}
+            className={`rounded-2xl font-bold text-lg px-5 py-4 min-h-[56px] shadow-sm transition-all cursor-pointer flex items-center justify-center ${getOptionStyle(option.value)} ${answered ? 'cursor-default' : ''}`}
           >
             {option.label[lang]}
           </motion.button>
