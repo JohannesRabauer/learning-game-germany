@@ -1,0 +1,60 @@
+{
+  "math": {
+    "name": "Mathematik",
+    "shortName": "Mathe",
+    "icon": "🔢",
+    "topics": {
+      "addition": "Addition",
+      "subtraction": "Subtraktion",
+      "multiplication": "Multiplikation",
+      "division": "Division",
+      "counting": "Zählen",
+      "comparison": "Vergleichen",
+      "sequences": "Zahlenreihen",
+      "time": "Uhrzeit",
+      "money": "Geld",
+      "geometry": "Geometrie",
+      "fractions": "Brüche",
+      "mental_math": "Kopfrechnen",
+      "mixed": "Gemischt"
+    }
+  },
+  "deutsch": {
+    "name": "Deutsch",
+    "shortName": "Deutsch",
+    "icon": "📖",
+    "topics": {
+      "letters": "Buchstaben",
+      "syllables": "Silben",
+      "spelling": "Rechtschreibung",
+      "articles": "Artikel (der, die, das)",
+      "nouns": "Nomen",
+      "verbs": "Verben",
+      "adjectives": "Adjektive",
+      "compound_words": "Zusammengesetzte Wörter",
+      "reading": "Lesen",
+      "sentences": "Sätze",
+      "mixed": "Gemischt"
+    }
+  },
+  "sachunterricht": {
+    "name": "Sachunterricht",
+    "shortName": "Sachkunde",
+    "icon": "🌍",
+    "topics": {
+      "animals": "Tiere",
+      "plants": "Pflanzen",
+      "seasons": "Jahreszeiten",
+      "weather": "Wetter",
+      "body": "Mein Körper",
+      "water_cycle": "Wasserkreislauf",
+      "german_states": "Bundesländer",
+      "solar_system": "Sonnensystem",
+      "recycling": "Recycling",
+      "traffic": "Verkehr",
+      "food": "Ernährung",
+      "mixed": "Gemischt"
+    }
+  },
+  "classLabel": "Klasse {{number}}"
+}

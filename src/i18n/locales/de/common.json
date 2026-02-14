@@ -1,0 +1,74 @@
+{
+  "appName": "Kluge Eule",
+  "nav": {
+    "home": "Startseite",
+    "profile": "Mein Profil",
+    "trophies": "Pokale",
+    "settings": "Einstellungen",
+    "daily": "Tagesaufgabe"
+  },
+  "actions": {
+    "start": "Los geht's!",
+    "next": "Weiter",
+    "back": "Zurück",
+    "tryAgain": "Nochmal versuchen",
+    "pause": "Pause",
+    "continue": "Weitermachen",
+    "finish": "Fertig",
+    "play": "Spielen",
+    "close": "Schließen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "delete": "Löschen",
+    "export": "Exportieren",
+    "import": "Importieren"
+  },
+  "mascot": {
+    "welcome": "Hallo {{name}}! Schön, dich zu sehen!",
+    "correct": "Super gemacht! Richtig!",
+    "wrong": "Nicht schlimm! Versuch es nochmal!",
+    "streak": "Wow, {{count}} richtig hintereinander!",
+    "breakTime": "Du hast toll gelernt! Zeit für eine Pause.",
+    "welcomeBack": "Schön, dass du wieder da bist!",
+    "perfect": "Unglaublich! Alles richtig!",
+    "goodJob": "Gut gemacht!",
+    "keepGoing": "Weiter so!",
+    "intro": "Hallo! Ich bin die Kluge Eule. Lass uns zusammen lernen!"
+  },
+  "onboarding": {
+    "welcomeTitle": "Willkommen bei Kluge Eule!",
+    "welcomeText": "Dein Lern-Abenteuer beginnt jetzt!",
+    "namePrompt": "Wie heißt du?",
+    "namePlaceholder": "Dein Name",
+    "classPrompt": "In welcher Klasse bist du?",
+    "languagePrompt": "Welche Sprache möchtest du?",
+    "readyTitle": "Du bist bereit!",
+    "readyText": "Los geht's, {{name}}!",
+    "letsGo": "Auf geht's!"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "sound": "Ton",
+    "soundOn": "Ton an",
+    "soundOff": "Ton aus",
+    "class": "Klasse",
+    "language": "Sprache",
+    "timer": "Timer-Modus",
+    "timerRelaxed": "Entspannt",
+    "timerStandard": "Normal",
+    "timerChallenge": "Herausforderung",
+    "data": "Meine Daten",
+    "exportData": "Daten herunterladen",
+    "importData": "Daten hochladen",
+    "deleteData": "Alle Daten löschen",
+    "deleteConfirm": "Wirklich alle Daten löschen? Das kann nicht rückgängig gemacht werden!",
+    "importSuccess": "Daten erfolgreich geladen!",
+    "importError": "Datei konnte nicht geladen werden.",
+    "reducedMotion": "Weniger Animationen"
+  },
+  "time": {
+    "seconds": "Sekunden",
+    "minutes": "Minuten"
+  }
+}

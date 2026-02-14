@@ -1,0 +1,64 @@
+{
+  "modes": {
+    "quick_round": "Schnelle Runde",
+    "sort_game": "Sortier-Spiel",
+    "math_flash": "Rechen-Blitz",
+    "word_builder": "Wort-Baumeister",
+    "daily_challenge": "Tagesaufgabe"
+  },
+  "modeDescriptions": {
+    "quick_round": "10 Fragen - sammle Sterne!",
+    "sort_game": "Sortiere die Dinge richtig ein!",
+    "math_flash": "Rechne so schnell du kannst!",
+    "word_builder": "Baue Wörter aus Buchstaben!",
+    "daily_challenge": "Deine tägliche Herausforderung!"
+  },
+  "quiz": {
+    "question": "Frage {{current}} von {{total}}",
+    "correct": "Richtig!",
+    "wrong": "Leider falsch",
+    "correctAnswer": "Die richtige Antwort ist: {{answer}}",
+    "timeUp": "Zeit abgelaufen!",
+    "hint": "Tipp"
+  },
+  "results": {
+    "title": "Ergebnis",
+    "score": "{{correct}} von {{total}} richtig",
+    "xpEarned": "+{{xp}} XP",
+    "newRecord": "Neuer Rekord!",
+    "perfect": "Perfekt!",
+    "great": "Toll gemacht!",
+    "good": "Gut gemacht!",
+    "tryHarder": "Übe weiter!",
+    "playAgain": "Nochmal spielen",
+    "backHome": "Zur Startseite",
+    "stars": "{{count}} Sterne"
+  },
+  "mathFlash": {
+    "title": "Rechen-Blitz",
+    "timeLeft": "Zeit: {{seconds}}s",
+    "score": "Punkte: {{score}}",
+    "combo": "Combo: x{{combo}}",
+    "type_answer": "Tippe die Antwort ein",
+    "finalScore": "Endpunktzahl: {{score}}"
+  },
+  "dragSort": {
+    "instruction": "Ziehe die Elemente in die richtige Kategorie!",
+    "check": "Überprüfen",
+    "allCorrect": "Alles richtig!",
+    "someWrong": "{{count}} noch falsch. Versuch es nochmal!"
+  },
+  "wordBuilder": {
+    "instruction": "Baue das Wort!",
+    "hint": "Tipp anzeigen",
+    "clear": "Zurücksetzen",
+    "submit": "Prüfen"
+  },
+  "daily": {
+    "title": "Tagesaufgabe",
+    "completed": "Heute schon geschafft!",
+    "streak": "Streak: {{count}} Tage",
+    "comeBackTomorrow": "Komm morgen wieder!",
+    "newChallenge": "Neue Aufgabe verfügbar!"
+  }
+}

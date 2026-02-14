@@ -1,0 +1,32 @@
+{
+  "xp": {
+    "label": "XP",
+    "earned": "+{{amount}} XP"
+  },
+  "level": {
+    "label": "Level {{number}}",
+    "up": "Level Up!",
+    "newLevel": "You are now Level {{number}}!",
+    "title": "{{title}}"
+  },
+  "badges": {
+    "title": "Badges",
+    "earned": "New badge!",
+    "locked": "Still locked",
+    "unlocked": "Unlocked!",
+    "trophyRoom": "Trophies",
+    "progress": "{{earned}} of {{total}} badges"
+  },
+  "streak": {
+    "label": "Streak",
+    "days": "{{count}} days",
+    "frozen": "Frozen",
+    "lost": "Streak lost",
+    "freezeAvailable": "1 freeze available"
+  },
+  "stars": {
+    "one": "1 star",
+    "two": "2 stars",
+    "three": "3 stars"
+  }
+}

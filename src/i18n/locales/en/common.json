@@ -1,0 +1,74 @@
+{
+  "appName": "Kluge Eule",
+  "nav": {
+    "home": "Home",
+    "profile": "My Profile",
+    "trophies": "Trophies",
+    "settings": "Settings",
+    "daily": "Daily Challenge"
+  },
+  "actions": {
+    "start": "Let's go!",
+    "next": "Next",
+    "back": "Back",
+    "tryAgain": "Try again",
+    "pause": "Pause",
+    "continue": "Continue",
+    "finish": "Done",
+    "play": "Play",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "export": "Export",
+    "import": "Import"
+  },
+  "mascot": {
+    "welcome": "Hello {{name}}! Great to see you!",
+    "correct": "Well done! Correct!",
+    "wrong": "No worries! Try again!",
+    "streak": "Wow, {{count}} correct in a row!",
+    "breakTime": "Great learning! Time for a break.",
+    "welcomeBack": "Great to have you back!",
+    "perfect": "Amazing! All correct!",
+    "goodJob": "Good job!",
+    "keepGoing": "Keep going!",
+    "intro": "Hello! I'm the Wise Owl. Let's learn together!"
+  },
+  "onboarding": {
+    "welcomeTitle": "Welcome to Kluge Eule!",
+    "welcomeText": "Your learning adventure starts now!",
+    "namePrompt": "What's your name?",
+    "namePlaceholder": "Your name",
+    "classPrompt": "What class are you in?",
+    "languagePrompt": "Which language do you prefer?",
+    "readyTitle": "You're ready!",
+    "readyText": "Let's go, {{name}}!",
+    "letsGo": "Let's go!"
+  },
+  "settings": {
+    "title": "Settings",
+    "sound": "Sound",
+    "soundOn": "Sound on",
+    "soundOff": "Sound off",
+    "class": "Class",
+    "language": "Language",
+    "timer": "Timer mode",
+    "timerRelaxed": "Relaxed",
+    "timerStandard": "Standard",
+    "timerChallenge": "Challenge",
+    "data": "My Data",
+    "exportData": "Download data",
+    "importData": "Upload data",
+    "deleteData": "Delete all data",
+    "deleteConfirm": "Really delete all data? This cannot be undone!",
+    "importSuccess": "Data loaded successfully!",
+    "importError": "Could not load file.",
+    "reducedMotion": "Reduce animations"
+  },
+  "time": {
+    "seconds": "seconds",
+    "minutes": "minutes"
+  }
+}

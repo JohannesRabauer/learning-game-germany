@@ -1,0 +1,64 @@
+{
+  "modes": {
+    "quick_round": "Quick Round",
+    "sort_game": "Sort Game",
+    "math_flash": "Math Flash",
+    "word_builder": "Word Builder",
+    "daily_challenge": "Daily Challenge"
+  },
+  "modeDescriptions": {
+    "quick_round": "10 questions - collect stars!",
+    "sort_game": "Sort the items correctly!",
+    "math_flash": "Calculate as fast as you can!",
+    "word_builder": "Build words from letters!",
+    "daily_challenge": "Your daily challenge!"
+  },
+  "quiz": {
+    "question": "Question {{current}} of {{total}}",
+    "correct": "Correct!",
+    "wrong": "Not quite right",
+    "correctAnswer": "The correct answer is: {{answer}}",
+    "timeUp": "Time's up!",
+    "hint": "Hint"
+  },
+  "results": {
+    "title": "Results",
+    "score": "{{correct}} of {{total}} correct",
+    "xpEarned": "+{{xp}} XP",
+    "newRecord": "New record!",
+    "perfect": "Perfect!",
+    "great": "Great job!",
+    "good": "Good job!",
+    "tryHarder": "Keep practicing!",
+    "playAgain": "Play again",
+    "backHome": "Back to home",
+    "stars": "{{count}} stars"
+  },
+  "mathFlash": {
+    "title": "Math Flash",
+    "timeLeft": "Time: {{seconds}}s",
+    "score": "Score: {{score}}",
+    "combo": "Combo: x{{combo}}",
+    "type_answer": "Type the answer",
+    "finalScore": "Final score: {{score}}"
+  },
+  "dragSort": {
+    "instruction": "Drag the items into the correct category!",
+    "check": "Check",
+    "allCorrect": "All correct!",
+    "someWrong": "{{count}} still wrong. Try again!"
+  },
+  "wordBuilder": {
+    "instruction": "Build the word!",
+    "hint": "Show hint",
+    "clear": "Clear",
+    "submit": "Check"
+  },
+  "daily": {
+    "title": "Daily Challenge",
+    "completed": "Already done today!",
+    "streak": "Streak: {{count}} days",
+    "comeBackTomorrow": "Come back tomorrow!",
+    "newChallenge": "New challenge available!"
+  }
+}

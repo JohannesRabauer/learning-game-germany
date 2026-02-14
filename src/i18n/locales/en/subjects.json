@@ -1,0 +1,60 @@
+{
+  "math": {
+    "name": "Mathematics",
+    "shortName": "Math",
+    "icon": "🔢",
+    "topics": {
+      "addition": "Addition",
+      "subtraction": "Subtraction",
+      "multiplication": "Multiplication",
+      "division": "Division",
+      "counting": "Counting",
+      "comparison": "Comparing",
+      "sequences": "Number Sequences",
+      "time": "Telling Time",
+      "money": "Money",
+      "geometry": "Geometry",
+      "fractions": "Fractions",
+      "mental_math": "Mental Math",
+      "mixed": "Mixed"
+    }
+  },
+  "deutsch": {
+    "name": "German Language",
+    "shortName": "German",
+    "icon": "📖",
+    "topics": {
+      "letters": "Letters",
+      "syllables": "Syllables",
+      "spelling": "Spelling",
+      "articles": "Articles (der, die, das)",
+      "nouns": "Nouns",
+      "verbs": "Verbs",
+      "adjectives": "Adjectives",
+      "compound_words": "Compound Words",
+      "reading": "Reading",
+      "sentences": "Sentences",
+      "mixed": "Mixed"
+    }
+  },
+  "sachunterricht": {
+    "name": "General Knowledge",
+    "shortName": "Science",
+    "icon": "🌍",
+    "topics": {
+      "animals": "Animals",
+      "plants": "Plants",
+      "seasons": "Seasons",
+      "weather": "Weather",
+      "body": "My Body",
+      "water_cycle": "Water Cycle",
+      "german_states": "German States",
+      "solar_system": "Solar System",
+      "recycling": "Recycling",
+      "traffic": "Traffic Safety",
+      "food": "Nutrition",
+      "mixed": "Mixed"
+    }
+  },
+  "classLabel": "Class {{number}}"
+}
