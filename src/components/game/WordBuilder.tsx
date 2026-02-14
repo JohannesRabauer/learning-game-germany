@@ -39,11 +39,11 @@ export default function WordBuilder({ question, onAnswer }: WordBuilderProps) {
       <p className="text-lg text-gray-600 mb-2">{question.prompt[lang]}</p>
 
       {showHint && question.hint && (
-        <p className="text-sm text-primary mb-2">{question.hint[lang]}</p>
+        <p className="text-sm text-primary font-semibold mb-2">{question.hint[lang]}</p>
       )}
 
       {/* Built word display */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 min-h-[80px] flex items-center justify-center gap-1">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-6 min-h-[80px] flex items-center justify-center gap-1">
         <AnimatePresence>
           {selectedIndices.map((letterIdx, pos) => (
             <motion.span
@@ -72,9 +72,9 @@ export default function WordBuilder({ question, onAnswer }: WordBuilderProps) {
               whileTap={{ scale: 0.9 }}
               onClick={() => addLetter(idx)}
               disabled={used}
-              className={`w-14 h-14 rounded-xl font-bold text-xl shadow transition-all cursor-pointer ${
+              className={`w-14 h-14 rounded-xl font-bold text-xl shadow-sm transition-all cursor-pointer ${
                 used
-                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
                   : 'bg-white text-gray-800 hover:bg-primary/10 hover:border-primary border-2 border-gray-200'
               }`}
             >
@@ -85,9 +85,9 @@ export default function WordBuilder({ question, onAnswer }: WordBuilderProps) {
       </div>
 
       {/* Actions */}
-      <div className="flex gap-3 justify-center">
+      <div className="flex flex-wrap gap-2 justify-center">
         <BigButton onClick={removeLast} color="gray" size="sm" disabled={selectedIndices.length === 0}>
-          ← Undo
+          ← {t('wordBuilder.undo')}
         </BigButton>
         <BigButton onClick={clearAll} color="gray" size="sm" disabled={selectedIndices.length === 0}>
           {t('wordBuilder.clear')}

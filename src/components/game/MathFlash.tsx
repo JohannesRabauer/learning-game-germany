@@ -63,8 +63,8 @@ export default function MathFlash({ klasse, difficulty, onComplete }: MathFlashP
     <div className="max-w-md mx-auto">
       <Timer seconds={seconds} totalSeconds={TIME_LIMIT} />
 
-      <div className="flex justify-between mt-4 mb-6">
-        <span className="font-bold text-lg">{t('mathFlash.score', { score })}</span>
+      <div className="flex justify-between items-center mt-4 mb-6">
+        <span className="font-bold text-lg text-gray-700">{t('mathFlash.score', { score })}</span>
         {combo > 1 && (
           <motion.span
             key={combo}
@@ -79,7 +79,7 @@ export default function MathFlash({ klasse, difficulty, onComplete }: MathFlashP
 
       <motion.div
         animate={flash === 'correct' ? { backgroundColor: ['#dcfce7', '#ffffff'] } : flash === 'wrong' ? { x: [0, -10, 10, 0] } : {}}
-        className="bg-white rounded-3xl shadow-lg p-8 text-center mb-6"
+        className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 text-center mb-6"
       >
         <p className="text-4xl font-extrabold text-gray-800">{question.prompt[lang]}</p>
       </motion.div>
@@ -91,12 +91,12 @@ export default function MathFlash({ klasse, difficulty, onComplete }: MathFlashP
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
           placeholder={t('mathFlash.type_answer')}
-          className="flex-1 text-2xl font-bold text-center border-3 border-gray-300 rounded-2xl p-4 focus:border-primary focus:outline-none"
+          className="flex-1 text-2xl font-bold text-center border-2 border-gray-300 rounded-2xl p-4 focus:border-primary focus:outline-none bg-white"
           autoFocus
         />
         <button
           type="submit"
-          className="bg-primary text-white font-bold text-xl px-8 rounded-2xl hover:bg-primary-dark transition-colors cursor-pointer"
+          className="bg-primary text-white font-bold text-2xl px-8 rounded-2xl hover:bg-primary-dark transition-colors cursor-pointer shadow-md"
         >
           →
         </button>

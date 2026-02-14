@@ -22,8 +22,8 @@ function DraggableItem({ id, label, placed }: { id: string; label: string; place
       style={style}
       {...listeners}
       {...attributes}
-      className={`bg-white border-2 border-gray-300 rounded-xl px-4 py-3 font-bold text-center cursor-grab active:cursor-grabbing shadow-sm
-        ${isDragging ? 'opacity-50 z-50' : 'hover:border-primary'}`}
+      className={`bg-white border-2 border-gray-200 rounded-xl px-4 py-3 font-bold text-center cursor-grab active:cursor-grabbing shadow-sm transition-colors
+        ${isDragging ? 'opacity-50 z-50 border-primary' : 'hover:border-primary/40'}`}
     >
       {label}
     </div>
@@ -36,11 +36,11 @@ function DroppableCategory({ id, label, items }: { id: string; label: string; it
   return (
     <div
       ref={setNodeRef}
-      className={`border-3 border-dashed rounded-2xl p-4 min-h-[120px] transition-colors ${
-        isOver ? 'border-primary bg-primary/5' : 'border-gray-300 bg-gray-50'
+      className={`border-2 border-dashed rounded-2xl p-4 min-h-[120px] transition-all ${
+        isOver ? 'border-primary bg-primary/5 shadow-inner' : 'border-gray-300 bg-gray-50/80'
       }`}
     >
-      <p className="font-bold text-center text-gray-600 mb-2">{label}</p>
+      <p className="font-bold text-center text-gray-600 mb-2 text-sm">{label}</p>
       <div className="flex flex-wrap gap-2 justify-center">
         {items.map((item) => (
           <motion.span
@@ -88,7 +88,7 @@ export default function DragDropArea({ question, onAnswer }: DragDropAreaProps) 
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <div className="max-w-lg mx-auto">
-        <p className="text-center text-gray-600 mb-4">{t('dragSort.instruction')}</p>
+        <p className="text-center text-gray-600 mb-4 font-semibold">{t('dragSort.instruction')}</p>
 
         {/* Draggable items */}
         <div className="flex flex-wrap gap-2 justify-center mb-6">
@@ -103,7 +103,7 @@ export default function DragDropArea({ question, onAnswer }: DragDropAreaProps) 
         </div>
 
         {/* Drop zones */}
-        <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-2 gap-3 mb-6">
           {question.categories.map((category) => (
             <DroppableCategory
               key={category.id}
@@ -116,7 +116,7 @@ export default function DragDropArea({ question, onAnswer }: DragDropAreaProps) 
 
         <div className="flex justify-center gap-3">
           <BigButton onClick={() => setPlacements({})} color="gray" size="sm">
-            Reset
+            {t('dragSort.reset')}
           </BigButton>
           <BigButton onClick={handleCheck} color="primary" size="sm" disabled={!allPlaced || checked}>
             {t('dragSort.check')}
