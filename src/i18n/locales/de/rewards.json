@@ -28,5 +28,16 @@
     "one": "1 Stern",
     "two": "2 Sterne",
     "three": "3 Sterne"
+  },
+  "chest": {
+    "earned": "Schatztruhe erhalten!",
+    "newTitle": "Neuer Titel!",
+    "newCosmetic": "Neuer Skin!",
+    "collect": "Einsammeln!"
+  },
+  "tabs": {
+    "badges": "Abzeichen",
+    "titles": "Titel",
+    "cosmetics": "Skins"
   }
 }

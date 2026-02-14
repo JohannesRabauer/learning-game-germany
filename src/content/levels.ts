@@ -16,6 +16,16 @@ export const LEVELS: Level[] = [
   { level: 13, title: { de: 'Großmeister', en: 'Grand Master' }, xpRequired: 35000 },
   { level: 14, title: { de: 'Legende', en: 'Legend' }, xpRequired: 45000 },
   { level: 15, title: { de: 'Meister des Wissens', en: 'Master of Knowledge' }, xpRequired: 50000 },
+  { level: 16, title: { de: 'Weiser', en: 'Sage' }, xpRequired: 58000 },
+  { level: 17, title: { de: 'Gelehrter', en: 'Scholar' }, xpRequired: 67000 },
+  { level: 18, title: { de: 'Orakel', en: 'Oracle' }, xpRequired: 77000 },
+  { level: 19, title: { de: 'Erleuchteter', en: 'Enlightened' }, xpRequired: 88000 },
+  { level: 20, title: { de: 'Titan', en: 'Titan' }, xpRequired: 100000 },
+  { level: 21, title: { de: 'Phönix', en: 'Phoenix' }, xpRequired: 115000 },
+  { level: 22, title: { de: 'Drache', en: 'Dragon' }, xpRequired: 132000 },
+  { level: 23, title: { de: 'Unsterblicher', en: 'Immortal' }, xpRequired: 150000 },
+  { level: 24, title: { de: 'Göttergleich', en: 'Godlike' }, xpRequired: 175000 },
+  { level: 25, title: { de: 'Ewiger Gelehrter', en: 'Eternal Scholar' }, xpRequired: 200000 },
 ];
 
 export function getLevelForXP(xp: number): number {

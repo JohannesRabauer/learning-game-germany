@@ -49,7 +49,12 @@ export interface GameProgress {
     totalPlayTimeMinutes: number;
     longestCombo: number;
     perfectRounds: number;
+    chestsOpened: number;
   };
+  unlockedTitles: string[];
+  unlockedCosmetics: string[];
+  activeTitle: string;
+  activeFrame: string;
 }
 
 export interface Settings {
@@ -93,5 +98,10 @@ export const DEFAULT_PROGRESS: GameProgress = {
     totalPlayTimeMinutes: 0,
     longestCombo: 0,
     perfectRounds: 0,
+    chestsOpened: 0,
   },
+  unlockedTitles: [],
+  unlockedCosmetics: [],
+  activeTitle: '',
+  activeFrame: 'default',
 };

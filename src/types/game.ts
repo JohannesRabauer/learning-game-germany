@@ -1,4 +1,5 @@
 import type { Subject, Klasse, Question } from './question';
+import type { ChestTier, ChestReward } from './reward';
 
 export type GameMode = 'quick_round' | 'sort_game' | 'math_flash' | 'word_builder' | 'daily_challenge';
 
@@ -42,4 +43,6 @@ export interface GameResult {
   leveledUp: boolean;
   previousLevel: number;
   newLevel: number;
+  chestTier: ChestTier;
+  chestReward: ChestReward | null;
 }

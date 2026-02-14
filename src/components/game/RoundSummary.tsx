@@ -6,6 +6,7 @@ import BigButton from '../common/BigButton';
 import ReactCanvasConfetti from 'react-canvas-confetti';
 import { useConfetti } from '../../hooks/useConfetti';
 import { useEffect } from 'react';
+import { CHEST_DEFINITIONS } from '../../content/chests';
 
 interface RoundSummaryProps {
   result: GameResult;
@@ -14,7 +15,9 @@ interface RoundSummaryProps {
 }
 
 export default function RoundSummary({ result, onPlayAgain, onHome }: RoundSummaryProps) {
-  const { t } = useTranslation('game');
+  const { t, i18n } = useTranslation('game');
+  const { t: tRewards } = useTranslation('rewards');
+  const lang = i18n.language?.startsWith('de') ? 'de' : 'en';
   const { getInstance, fireBig } = useConfetti();
 
   useEffect(() => {
@@ -28,6 +31,8 @@ export default function RoundSummary({ result, onPlayAgain, onHome }: RoundSumma
     if (result.stars === 2) return t('results.great');
     return t('results.tryHarder');
   };
+
+  const chest = CHEST_DEFINITIONS[result.chestTier];
 
   return (
     <motion.div
@@ -71,6 +76,24 @@ export default function RoundSummary({ result, onPlayAgain, onHome }: RoundSumma
           </p>
         )}
       </div>
+
+      {/* Chest teaser */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7 }}
+        className="mt-4 bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200/60 rounded-2xl p-4"
+      >
+        <p className="text-sm font-bold text-amber-600 mb-1">{tRewards('chest.earned')}</p>
+        <motion.span
+          className="text-4xl inline-block"
+          animate={{ rotate: [-3, 3, -3], scale: [1, 1.05, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          {chest.icon}
+        </motion.span>
+        <p className="font-extrabold text-gray-800 mt-1">{chest.name[lang]}</p>
+      </motion.div>
 
       <div className="flex gap-4 justify-center mt-8">
         <BigButton onClick={onPlayAgain} color="primary">{t('results.playAgain')}</BigButton>

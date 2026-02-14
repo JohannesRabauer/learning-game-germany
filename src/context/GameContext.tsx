@@ -15,8 +15,25 @@ type GameAction =
   | { type: 'UPDATE_PLAY_TIME'; minutes: number }
   | { type: 'UPDATE_STREAK' }
   | { type: 'USE_STREAK_FREEZE' }
+  | { type: 'OPEN_CHEST'; titleId?: string; cosmeticId?: string }
+  | { type: 'SET_ACTIVE_TITLE'; titleId: string }
+  | { type: 'SET_ACTIVE_FRAME'; frameId: string }
   | { type: 'SET_PROGRESS'; progress: GameProgress }
   | { type: 'RESET_PROGRESS' };
+
+function ensureProgressFields(state: GameProgress): GameProgress {
+  return {
+    ...state,
+    unlockedTitles: state.unlockedTitles ?? [],
+    unlockedCosmetics: state.unlockedCosmetics ?? [],
+    activeTitle: state.activeTitle ?? '',
+    activeFrame: state.activeFrame ?? 'default',
+    stats: {
+      ...state.stats,
+      chestsOpened: state.stats.chestsOpened ?? 0,
+    },
+  };
+}
 
 function gameReducer(state: GameProgress, action: GameAction): GameProgress {
   switch (action.type) {
@@ -125,6 +142,29 @@ function gameReducer(state: GameProgress, action: GameAction): GameProgress {
           freezesRemaining: state.streak.freezesRemaining - 1,
         },
       };
+    case 'OPEN_CHEST': {
+      const newTitles = [...(state.unlockedTitles ?? [])];
+      const newCosmetics = [...(state.unlockedCosmetics ?? [])];
+      if (action.titleId && !newTitles.includes(action.titleId)) {
+        newTitles.push(action.titleId);
+      }
+      if (action.cosmeticId && !newCosmetics.includes(action.cosmeticId)) {
+        newCosmetics.push(action.cosmeticId);
+      }
+      return {
+        ...state,
+        unlockedTitles: newTitles,
+        unlockedCosmetics: newCosmetics,
+        stats: {
+          ...state.stats,
+          chestsOpened: (state.stats.chestsOpened ?? 0) + 1,
+        },
+      };
+    }
+    case 'SET_ACTIVE_TITLE':
+      return { ...state, activeTitle: action.titleId };
+    case 'SET_ACTIVE_FRAME':
+      return { ...state, activeFrame: action.frameId };
     case 'SET_PROGRESS':
       return action.progress;
     case 'RESET_PROGRESS':
@@ -144,13 +184,16 @@ interface GameContextType {
   updatePlayTime: (minutes: number) => void;
   updateStreak: () => void;
   checkNewBadges: () => string[];
+  openChest: (titleId?: string, cosmeticId?: string) => void;
+  setActiveTitle: (titleId: string) => void;
+  setActiveFrame: (frameId: string) => void;
   resetProgress: () => void;
 }
 
 const GameContext = createContext<GameContextType | null>(null);
 
 export function GameProvider({ children }: { children: ReactNode }) {
-  const [progress, dispatch] = useReducer(gameReducer, null, () => loadProgress());
+  const [progress, dispatch] = useReducer(gameReducer, null, () => ensureProgressFields(loadProgress()));
 
   useEffect(() => {
     const timeout = setTimeout(() => saveProgress(progress), 500);
@@ -178,6 +221,9 @@ export function GameProvider({ children }: { children: ReactNode }) {
       subjectsPlayed,
       dailyChallengesCompleted,
       totalXP: progress.xp,
+      totalQuestions: progress.stats.totalQuestionsAnswered,
+      playTimeMinutes: progress.stats.totalPlayTimeMinutes,
+      chestsOpened: progress.stats.chestsOpened ?? 0,
     };
 
     const newBadges: string[] = [];
@@ -207,6 +253,9 @@ export function GameProvider({ children }: { children: ReactNode }) {
     updatePlayTime: (minutes) => dispatch({ type: 'UPDATE_PLAY_TIME', minutes }),
     updateStreak: () => dispatch({ type: 'UPDATE_STREAK' }),
     checkNewBadges,
+    openChest: (titleId, cosmeticId) => dispatch({ type: 'OPEN_CHEST', titleId, cosmeticId }),
+    setActiveTitle: (titleId) => dispatch({ type: 'SET_ACTIVE_TITLE', titleId }),
+    setActiveFrame: (frameId) => dispatch({ type: 'SET_ACTIVE_FRAME', frameId }),
     resetProgress: () => dispatch({ type: 'RESET_PROGRESS' }),
   };
 
