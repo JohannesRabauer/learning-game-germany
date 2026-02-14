@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
@@ -10,7 +10,7 @@ import RoundSummary from '../components/game/RoundSummary';
 import MascotSpeech from '../components/common/MascotSpeech';
 import BigButton from '../components/common/BigButton';
 import ProgressBar from '../components/common/ProgressBar';
-import { getQuestions } from '../content/questions';
+import { getQuestionsAsync } from '../content/questions';
 import { calculateRoundXP, calculateStars } from '../utils/scoring';
 import { getToday } from '../utils/dateUtils';
 import type { MultipleChoiceQuestion } from '../types/question';
@@ -31,10 +31,15 @@ export default function DailyChallengePage() {
   const alreadyCompleted = progress.dailyChallenges[today]?.completed;
 
   const [started, setStarted] = useState(false);
-  const [questions] = useState(() =>
-    getQuestions({ klasse: profile?.klasse ?? 1, limit: DAILY_QUESTIONS })
-  );
+  const [questions, setQuestions] = useState<MultipleChoiceQuestion[]>([]);
   const [currentIdx, setCurrentIdx] = useState(0);
+
+  const klasse = profile?.klasse ?? 1;
+  useEffect(() => {
+    getQuestionsAsync({ klasse, type: 'multiple_choice', limit: DAILY_QUESTIONS }).then((qs) => {
+      setQuestions(qs as MultipleChoiceQuestion[]);
+    });
+  }, [klasse]);
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [result, setResult] = useState<GameResult | null>(null);
 

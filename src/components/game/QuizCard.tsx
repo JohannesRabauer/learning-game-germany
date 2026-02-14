@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import type { MultipleChoiceQuestion } from '../../types/question';
+import { shuffle } from '../../utils/shuffle';
 
 interface QuizCardProps {
   question: MultipleChoiceQuestion;
@@ -13,6 +14,7 @@ interface QuizCardProps {
 export default function QuizCard({ question, questionNumber, totalQuestions, onAnswer }: QuizCardProps) {
   const { t, i18n } = useTranslation('game');
   const lang = i18n.language?.startsWith('de') ? 'de' : 'en';
+  const shuffledOptions = useMemo(() => shuffle(question.options), [question]);
   const [selected, setSelected] = useState<string | null>(null);
   const [answered, setAnswered] = useState(false);
 
@@ -62,7 +64,7 @@ export default function QuizCard({ question, questionNumber, totalQuestions, onA
         )}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {question.options.map((option, idx) => (
+        {shuffledOptions.map((option, idx) => (
           <motion.button
             key={option.value}
             initial={{ opacity: 0, y: 20 }}

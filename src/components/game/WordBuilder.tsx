@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import BigButton from '../common/BigButton';
 import type { WordBuildQuestion } from '../../types/question';
+import { shuffle } from '../../utils/shuffle';
 
 interface WordBuilderProps {
   question: WordBuildQuestion;
@@ -12,6 +13,11 @@ interface WordBuilderProps {
 export default function WordBuilder({ question, onAnswer }: WordBuilderProps) {
   const { t, i18n } = useTranslation('game');
   const lang = i18n.language?.startsWith('de') ? 'de' : 'en';
+  // Shuffle the display order of letters while preserving original indices
+  const shuffledIndices = useMemo(
+    () => shuffle(question.letters.map((_, i) => i)),
+    [question]
+  );
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
   const [showHint, setShowHint] = useState(false);
 
@@ -64,13 +70,13 @@ export default function WordBuilder({ question, onAnswer }: WordBuilderProps) {
 
       {/* Available letters */}
       <div className="flex flex-wrap justify-center gap-2 mb-6">
-        {question.letters.map((letter, idx) => {
-          const used = selectedIndices.includes(idx);
+        {shuffledIndices.map((originalIdx) => {
+          const used = selectedIndices.includes(originalIdx);
           return (
             <motion.button
-              key={idx}
+              key={originalIdx}
               whileTap={{ scale: 0.9 }}
-              onClick={() => addLetter(idx)}
+              onClick={() => addLetter(originalIdx)}
               disabled={used}
               className={`w-14 h-14 rounded-2xl font-bold text-xl shadow-sm transition-all cursor-pointer flex items-center justify-center ${
                 used
@@ -78,7 +84,7 @@ export default function WordBuilder({ question, onAnswer }: WordBuilderProps) {
                   : 'bg-white text-gray-800 hover:bg-primary/10 hover:border-primary border-2 border-gray-200'
               }`}
             >
-              {letter}
+              {question.letters[originalIdx]}
             </motion.button>
           );
         })}

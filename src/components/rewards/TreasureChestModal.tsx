@@ -78,7 +78,7 @@ export default function TreasureChestModal({ isOpen, onClose, tier, reward }: Tr
               : phase === 'opening'
                 ? { scale: [1, 1.5, 0], rotate: [0, 0, 180] }
                 : phase === 'revealed'
-                  ? { scale: [0, 1.3, 1] }
+                  ? { scale: [0, 1.3, 1], rotate: 0 }
                   : { scale: 1 }
           }
           transition={

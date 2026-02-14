@@ -13,7 +13,7 @@ import { deutschKlasse4 } from './deutsch/klasse4';
 import { sachunterrichtKlasse12 } from './sachunterricht/klasse1-2';
 import { sachunterrichtKlasse34 } from './sachunterricht/klasse3-4';
 
-const allStaticQuestions: Question[] = [
+const bundledQuestions: Question[] = [
   ...mathKlasse1,
   ...mathKlasse2,
   ...mathKlasse3,
@@ -25,6 +25,71 @@ const allStaticQuestions: Question[] = [
   ...sachunterrichtKlasse12,
   ...sachunterrichtKlasse34,
 ];
+
+// JSON file paths for each subject/klasse combination.
+// To add more questions, edit the JSON files in public/questions/ or add new ones here.
+const JSON_QUESTION_FILES = [
+  'math/klasse1.json',
+  'math/klasse2.json',
+  'math/klasse3.json',
+  'math/klasse4.json',
+  'deutsch/klasse1.json',
+  'deutsch/klasse2.json',
+  'deutsch/klasse3.json',
+  'deutsch/klasse4.json',
+  'sachunterricht/klasse1-2.json',
+  'sachunterricht/klasse3-4.json',
+];
+
+const BASE_PATH = import.meta.env.BASE_URL ?? '/';
+
+// Cache for loaded JSON questions
+let jsonQuestionsCache: Question[] | null = null;
+let loadPromise: Promise<Question[]> | null = null;
+
+async function fetchJsonQuestions(): Promise<Question[]> {
+  const results = await Promise.allSettled(
+    JSON_QUESTION_FILES.map(async (file) => {
+      const url = `${BASE_PATH}questions/${file}`;
+      const res = await fetch(url);
+      if (!res.ok) return [];
+      return (await res.json()) as Question[];
+    })
+  );
+
+  const allQuestions: Question[] = [];
+  for (const result of results) {
+    if (result.status === 'fulfilled') {
+      allQuestions.push(...result.value);
+    }
+  }
+  return allQuestions;
+}
+
+/**
+ * Load questions from JSON files in public/questions/.
+ * Falls back to bundled TypeScript questions if fetch fails.
+ * Results are cached after first successful load.
+ */
+export async function loadQuestions(): Promise<Question[]> {
+  if (jsonQuestionsCache) return jsonQuestionsCache;
+
+  if (!loadPromise) {
+    loadPromise = fetchJsonQuestions().then((questions) => {
+      // Deduplicate: JSON questions override bundled ones with same id
+      const jsonIds = new Set(questions.map((q) => q.id));
+      const uniqueBundled = bundledQuestions.filter((q) => !jsonIds.has(q.id));
+      jsonQuestionsCache = [...questions, ...uniqueBundled];
+      return jsonQuestionsCache;
+    }).catch(() => {
+      // Fallback to bundled questions on network error
+      jsonQuestionsCache = bundledQuestions;
+      return jsonQuestionsCache;
+    });
+  }
+
+  return loadPromise;
+}
 
 function generateMathQuestions(klasse: Klasse, difficulty: Difficulty, count: number): Question[] {
   const generators = [generateAdditionQuestion, generateSubtractionQuestion];
@@ -46,8 +111,8 @@ interface QuestionFilters {
   limit?: number;
 }
 
-export function getQuestions(filters: QuestionFilters): Question[] {
-  let questions = [...allStaticQuestions];
+function applyFilters(allQuestions: Question[], filters: QuestionFilters): Question[] {
+  let questions = [...allQuestions];
 
   if (filters.subject) questions = questions.filter((q) => q.subject === filters.subject);
   if (filters.klasse) questions = questions.filter((q) => q.klasse === filters.klasse);
@@ -67,4 +132,21 @@ export function getQuestions(filters: QuestionFilters): Question[] {
   }
 
   return shuffle(questions).slice(0, limit);
+}
+
+/**
+ * Get questions asynchronously (loads from JSON files on first call).
+ */
+export async function getQuestionsAsync(filters: QuestionFilters): Promise<Question[]> {
+  const allQuestions = await loadQuestions();
+  return applyFilters(allQuestions, filters);
+}
+
+/**
+ * Get questions synchronously using bundled questions (or cached JSON if already loaded).
+ * This is the original synchronous API for backwards compatibility.
+ */
+export function getQuestions(filters: QuestionFilters): Question[] {
+  const allQuestions = jsonQuestionsCache ?? bundledQuestions;
+  return applyFilters(allQuestions, filters);
 }
