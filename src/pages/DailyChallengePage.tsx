@@ -81,14 +81,14 @@ export default function DailyChallengePage() {
 
   if (alreadyCompleted && !started) {
     return (
-      <div className="py-8 text-center">
+      <div className="py-8 text-center max-w-md mx-auto">
         <MascotSpeech message={t('daily.completed')} mood="happy" />
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="mt-6">
-          <p className="text-xl font-bold text-gray-700 mb-4">{t('daily.comeBackTomorrow')}</p>
-          <p className="text-lg text-streak font-bold">{t('daily.streak', { count: progress.streak.current })}</p>
-          <div className="mt-6">
-            <BigButton onClick={() => navigate('/')} color="primary">{tCommon('actions.back')}</BigButton>
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 mb-6">
+            <p className="text-xl font-bold text-gray-700 mb-2">{t('daily.comeBackTomorrow')}</p>
+            <p className="text-lg text-streak font-bold">{t('daily.streak', { count: progress.streak.current })}</p>
           </div>
+          <BigButton onClick={() => navigate('/')} color="primary">{tCommon('actions.back')}</BigButton>
         </motion.div>
       </div>
     );
@@ -96,10 +96,10 @@ export default function DailyChallengePage() {
 
   if (!started) {
     return (
-      <div className="py-8 text-center">
+      <div className="py-8 text-center max-w-md mx-auto">
         <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-7xl mb-6">📅</motion.div>
         <h1 className="text-3xl font-extrabold text-gray-800 mb-3">{t('daily.title')}</h1>
-        <p className="text-gray-600 mb-6">{t('daily.streak', { count: progress.streak.current })}</p>
+        <p className="text-gray-600 mb-6 font-semibold">{t('daily.streak', { count: progress.streak.current })}</p>
         <MascotSpeech message={t('daily.newChallenge')} mood="excited" />
         <div className="mt-8">
           <BigButton onClick={() => setStarted(true)} size="lg">{tCommon('actions.start')}</BigButton>
@@ -123,7 +123,7 @@ export default function DailyChallengePage() {
 
   return (
     <div className="py-4">
-      <div className="mb-4">
+      <div className="mb-5">
         <ProgressBar value={currentIdx / questions.length} color="bg-purple-500" />
       </div>
       <AnimatePresence mode="wait">

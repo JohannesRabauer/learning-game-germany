@@ -12,15 +12,17 @@ export default function ProgressBar({ value, color = 'bg-primary', height = 'h-4
   const percent = Math.min(Math.max(value * 100, 0), 100);
 
   return (
-    <div className={`w-full ${height} bg-gray-200 rounded-full overflow-hidden ${className}`}>
-      <motion.div
-        className={`${height} ${color} rounded-full`}
-        initial={{ width: 0 }}
-        animate={{ width: `${percent}%` }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-      />
+    <div className={`flex items-center gap-2 ${className}`}>
+      <div className={`flex-1 ${height} bg-gray-200 rounded-full overflow-hidden`}>
+        <motion.div
+          className={`${height} ${color} rounded-full`}
+          initial={{ width: 0 }}
+          animate={{ width: `${percent}%` }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        />
+      </div>
       {showLabel && (
-        <span className="text-xs font-bold text-gray-600 ml-2">{Math.round(percent)}%</span>
+        <span className="text-xs font-bold text-gray-600 shrink-0">{Math.round(percent)}%</span>
       )}
     </div>
   );

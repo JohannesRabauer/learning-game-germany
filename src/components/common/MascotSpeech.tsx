@@ -27,13 +27,13 @@ export default function MascotSpeech({ message, mood = 'happy', size = 'md' }: M
       className="flex items-start gap-3 max-w-md mx-auto"
     >
       <motion.div
-        className="text-5xl flex-shrink-0"
+        className="text-5xl shrink-0 mt-1"
         animate={{ rotate: [0, -5, 5, 0] }}
         transition={{ repeat: Infinity, duration: 3 }}
       >
         🦉
       </motion.div>
-      <div className={`bg-white rounded-2xl shadow-md ${sizeClasses[size]} relative`}>
+      <div className={`bg-white rounded-2xl shadow-md ${sizeClasses[size]} relative border border-gray-100`}>
         <div className="absolute left-[-8px] top-4 w-0 h-0 border-t-[8px] border-t-transparent border-r-[8px] border-r-white border-b-[8px] border-b-transparent" />
         <p className="font-semibold text-gray-700">
           {message} {moodEmoji[mood]}

@@ -33,7 +33,7 @@ export default function RoundSummary({ result, onPlayAgain, onHome }: RoundSumma
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="text-center py-8"
+      className="text-center py-8 max-w-md mx-auto"
     >
       <ReactCanvasConfetti
         onInit={({ confetti }) => getInstance(confetti)}
@@ -53,7 +53,7 @@ export default function RoundSummary({ result, onPlayAgain, onHome }: RoundSumma
 
       <StarRating stars={result.stars} size={48} />
 
-      <div className="mt-6 space-y-2">
+      <div className="mt-6 bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-2">
         <p className="text-xl text-gray-700">
           {t('results.score', { correct: result.totalCorrect, total: result.totalQuestions })}
         </p>
@@ -66,8 +66,8 @@ export default function RoundSummary({ result, onPlayAgain, onHome }: RoundSumma
           {t('results.xpEarned', { xp: result.xpEarned })}
         </motion.p>
         {result.maxCombo > 2 && (
-          <p className="text-gray-500">
-            Max combo: {result.maxCombo}x
+          <p className="text-gray-500 font-semibold">
+            {t('results.maxCombo', { combo: result.maxCombo })}
           </p>
         )}
       </div>

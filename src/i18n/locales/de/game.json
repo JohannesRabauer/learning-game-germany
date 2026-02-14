@@ -19,7 +19,8 @@
     "wrong": "Leider falsch",
     "correctAnswer": "Die richtige Antwort ist: {{answer}}",
     "timeUp": "Zeit abgelaufen!",
-    "hint": "Tipp"
+    "hint": "Tipp",
+    "tapToContinue": "Tippe, um weiterzumachen"
   },
   "results": {
     "title": "Ergebnis",
@@ -32,7 +33,8 @@
     "tryHarder": "Übe weiter!",
     "playAgain": "Nochmal spielen",
     "backHome": "Zur Startseite",
-    "stars": "{{count}} Sterne"
+    "stars": "{{count}} Sterne",
+    "maxCombo": "Bester Combo: {{combo}}x"
   },
   "mathFlash": {
     "title": "Rechen-Blitz",
@@ -45,6 +47,7 @@
   "dragSort": {
     "instruction": "Ziehe die Elemente in die richtige Kategorie!",
     "check": "Überprüfen",
+    "reset": "Zurücksetzen",
     "allCorrect": "Alles richtig!",
     "someWrong": "{{count}} noch falsch. Versuch es nochmal!"
   },
@@ -52,7 +55,8 @@
     "instruction": "Baue das Wort!",
     "hint": "Tipp anzeigen",
     "clear": "Zurücksetzen",
-    "submit": "Prüfen"
+    "submit": "Prüfen",
+    "undo": "Rückgängig"
   },
   "daily": {
     "title": "Tagesaufgabe",

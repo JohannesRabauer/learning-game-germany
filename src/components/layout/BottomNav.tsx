@@ -15,20 +15,22 @@ export default function BottomNav() {
   const { t } = useTranslation();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden z-40">
-      <div className="flex justify-around items-center py-2">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200/60 md:hidden z-40 pb-[env(safe-area-inset-bottom)]">
+      <div className="flex justify-around items-center py-1.5 px-2">
         {navItems.map(({ path, icon: Icon, labelKey }) => {
           const isActive = location.pathname === path;
           return (
             <button
               key={path}
               onClick={() => navigate(path)}
-              className={`flex flex-col items-center gap-0.5 p-2 min-w-[64px] transition-colors cursor-pointer ${
-                isActive ? 'text-primary' : 'text-gray-400'
+              className={`flex flex-col items-center gap-0.5 py-1.5 px-3 min-w-[60px] rounded-xl transition-colors cursor-pointer ${
+                isActive
+                  ? 'text-primary bg-primary/8'
+                  : 'text-gray-400 active:bg-gray-100'
               }`}
             >
-              <Icon size={24} />
-              <span className="text-xs font-semibold">{t(labelKey)}</span>
+              <Icon size={22} strokeWidth={isActive ? 2.5 : 2} />
+              <span className={`text-[10px] font-semibold ${isActive ? 'font-bold' : ''}`}>{t(labelKey)}</span>
             </button>
           );
         })}

@@ -19,7 +19,8 @@
     "wrong": "Not quite right",
     "correctAnswer": "The correct answer is: {{answer}}",
     "timeUp": "Time's up!",
-    "hint": "Hint"
+    "hint": "Hint",
+    "tapToContinue": "Tap to continue"
   },
   "results": {
     "title": "Results",
@@ -32,7 +33,8 @@
     "tryHarder": "Keep practicing!",
     "playAgain": "Play again",
     "backHome": "Back to home",
-    "stars": "{{count}} stars"
+    "stars": "{{count}} stars",
+    "maxCombo": "Max combo: {{combo}}x"
   },
   "mathFlash": {
     "title": "Math Flash",
@@ -45,6 +47,7 @@
   "dragSort": {
     "instruction": "Drag the items into the correct category!",
     "check": "Check",
+    "reset": "Reset",
     "allCorrect": "All correct!",
     "someWrong": "{{count}} still wrong. Try again!"
   },
@@ -52,7 +55,8 @@
     "instruction": "Build the word!",
     "hint": "Show hint",
     "clear": "Clear",
-    "submit": "Check"
+    "submit": "Check",
+    "undo": "Undo"
   },
   "daily": {
     "title": "Daily Challenge",

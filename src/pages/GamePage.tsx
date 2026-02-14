@@ -176,7 +176,14 @@ export default function GamePage() {
   }
 
   const currentQuestion = questions[currentIdx];
-  if (!currentQuestion) return <div>Loading...</div>;
+  if (!currentQuestion) return (
+    <div className="flex items-center justify-center py-20">
+      <div className="text-center">
+        <div className="text-5xl mb-3 animate-bounce">🦉</div>
+        <p className="text-gray-400 font-semibold">Loading...</p>
+      </div>
+    </div>
+  );
 
   return (
     <div className="py-4">

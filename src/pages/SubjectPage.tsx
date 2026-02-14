@@ -1,8 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
-import BigButton from '../components/common/BigButton';
-import { ArrowLeft, Zap, GripVertical, PenLine, Timer } from 'lucide-react';
+import { ArrowLeft, Zap, GripVertical, PenLine, Timer, ChevronRight } from 'lucide-react';
 import type { Subject } from '../types/question';
 import type { GameMode } from '../types/game';
 
@@ -13,10 +12,10 @@ const modeConfig: { mode: GameMode; icon: typeof Zap; availableFor: Subject[] }[
   { mode: 'word_builder', icon: PenLine, availableFor: ['deutsch'] },
 ];
 
-const subjectColors: Record<Subject, 'math' | 'deutsch' | 'sachunterricht'> = {
-  math: 'math',
-  deutsch: 'deutsch',
-  sachunterricht: 'sachunterricht',
+const subjectColorStyles: Record<Subject, { bg: string; iconBg: string; text: string }> = {
+  math: { bg: 'bg-math/10 hover:bg-math/15 border-math/20', iconBg: 'bg-math text-white', text: 'text-math' },
+  deutsch: { bg: 'bg-deutsch/10 hover:bg-deutsch/15 border-deutsch/20', iconBg: 'bg-deutsch text-white', text: 'text-deutsch' },
+  sachunterricht: { bg: 'bg-sachunterricht/10 hover:bg-sachunterricht/15 border-sachunterricht/20', iconBg: 'bg-sachunterricht text-white', text: 'text-sachunterricht' },
 };
 
 export default function SubjectPage() {
@@ -26,7 +25,7 @@ export default function SubjectPage() {
   const { t: tSubjects } = useTranslation('subjects');
 
   const sub = subject as Subject;
-  const color = subjectColors[sub] ?? 'primary';
+  const colorStyle = subjectColorStyles[sub] ?? subjectColorStyles.math;
   const availableModes = modeConfig.filter((m) => m.availableFor.includes(sub));
 
   return (
@@ -40,27 +39,26 @@ export default function SubjectPage() {
         </h1>
       </div>
 
-      <div className="grid gap-4">
+      <div className="grid gap-3">
         {availableModes.map(({ mode, icon: Icon }, idx) => (
-          <motion.div
+          <motion.button
             key={mode}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.1 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => navigate(`/game/${sub}/${mode}`)}
+            className={`flex items-center gap-4 p-4 rounded-2xl border-2 transition-all cursor-pointer group ${colorStyle.bg}`}
           >
-            <BigButton
-              onClick={() => navigate(`/game/${sub}/${mode}`)}
-              color={color}
-              size="lg"
-              className="w-full flex items-center gap-4 justify-start text-left"
-            >
-              <Icon size={28} />
-              <div>
-                <p className="font-extrabold text-lg">{tGame(`modes.${mode}`)}</p>
-                <p className="text-sm opacity-80">{tGame(`modeDescriptions.${mode}`)}</p>
-              </div>
-            </BigButton>
-          </motion.div>
+            <div className={`p-3 rounded-xl shadow-sm ${colorStyle.iconBg}`}>
+              <Icon size={24} />
+            </div>
+            <div className="text-left flex-1">
+              <p className="font-extrabold text-lg text-gray-800">{tGame(`modes.${mode}`)}</p>
+              <p className="text-sm text-gray-500">{tGame(`modeDescriptions.${mode}`)}</p>
+            </div>
+            <ChevronRight size={20} className="text-gray-400 group-hover:text-gray-600 transition-colors" />
+          </motion.button>
         ))}
       </div>
     </div>
